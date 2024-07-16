@@ -31,8 +31,8 @@
 //   det = true;
 // }
 
-const width = 800;
-const height = 800;
+const width = 400;
+const height = 400;
 
 let x = width / 2;
 let y = height / 2;
@@ -41,8 +41,6 @@ function handleMotionEvent(event) {
   x = event.accelerationIncludingGravity.x;
   y = event.accelerationIncludingGravity.y;
   const z = event.accelerationIncludingGravity.z;
-
-  // Do something awesome.
 }
 
 function onClick(){
@@ -64,7 +62,7 @@ function onClick(){
 }
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(width, height);
 }
 
 function draw() {
