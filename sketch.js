@@ -37,9 +37,12 @@ const height = 400;
 let x = width / 2;
 let y = height / 2;
 
+let aclX = 0;
+let aclY = 0;
+
 function handleMotionEvent(event) {
-  x += event.acceleration.x;
-  y += event.acceleration.y;
+  aclX += event.acceleration.x;
+  aclY += event.acceleration.y;
 
   if (x <= 0) {
     x = 0;
@@ -48,7 +51,7 @@ function handleMotionEvent(event) {
   } 
 
   if (y <= 0) {
-    xy= 0;
+    y= 0;
   } else if (y >= height) {
     y = height;
   } 
@@ -80,6 +83,9 @@ function setup() {
 
 function draw() {
   background(255);
+
+  x += aclX;
+  y += aclY;
 
   fill(211, 174, 42);
   ellipse(x, y, 20, 20);
