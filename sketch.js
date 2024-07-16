@@ -37,20 +37,26 @@ const height = 400;
 let x = width / 2;
 let y = height / 2;
 
-let x2 = 0;
-let y2 = 0;
-
 function handleMotionEvent(event) {
-  x = event.accelerationIncludingGravity.x;
-  y = event.accelerationIncludingGravity.y;
+  x += event.acceleration.x;
+  y += event.acceleration.y;
 
-  x2 = event.acceleration.x;
-  y2 = event.acceleration.y;
+  if (x <= 0) {
+    x = 0;
+  } else if (x >= width) {
+    x = width;
+  } 
+
+  if (y <= 0) {
+    xy= 0;
+  } else if (y >= height) {
+    y = height;
+  } 
+
   // const z = event.accelerationIncludingGravity.z;
 }
 
 function onClick(){
-  console.log('button press')
   if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
       .then(permissionState => {
