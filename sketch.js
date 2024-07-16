@@ -75,6 +75,7 @@ function onClick(){
 
 function setup() {
   createCanvas(width, height);
+  ellipseMode(CENTER);
 }
 
 function draw() {
