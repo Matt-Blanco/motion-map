@@ -84,7 +84,7 @@ function draw() {
   ellipse(x, y, 20, 20);
 
   textSize(24);
-  text(`x: ${x}, y: ${y}`, width / 2, height / 2 + 30);
+  text(`x: ${Math.floor(x)}, y: ${Math.floor(y)}`, width / 2, height / 2 + 30);
 
 }
 
