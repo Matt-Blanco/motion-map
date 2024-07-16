@@ -49,12 +49,12 @@ function onClick(){
     DeviceMotionEvent.requestPermission()
       .then(permissionState => {
         if (permissionState === 'granted') {
-          window.addEventListener('devicemotion', cb);
+          window.addEventListener('devicemotion', handleMotionEvent);
         }
       })
       .catch(console.error);
   } else {
-    window.addEventListener('devicemotion', cb);
+    window.addEventListener('devicemotion', handleMotionEvent);
     // handle regular non iOS 13+ devices
   }
 
