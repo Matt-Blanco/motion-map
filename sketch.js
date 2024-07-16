@@ -71,6 +71,9 @@ function draw() {
   fill(211, 174, 42);
   ellipse(x, y, 20, 20);
 
+  textSize(24);
+  text(`x: ${x}, y: ${y}`, width / 2, height / 2 + 30);
+
 }
 
 // function setup() {
