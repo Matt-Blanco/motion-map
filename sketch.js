@@ -31,6 +31,7 @@ function cb(event){
 }
 
 function onClick(){
+  console.log('button press')
   if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
       .then(permissionState => {
@@ -133,5 +134,4 @@ function draw(){
     thetaY+=dthetaYdt*dt;
     thetaZ+=dthetaZdt*dt;
   }
-
 }
