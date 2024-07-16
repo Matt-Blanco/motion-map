@@ -46,16 +46,9 @@ function onClick(){
   }
 }
 
-
-
-
 function setup() {
-  createCanvas(400, 400,WEBGL);
+  createCanvas(400, 400, WEBGL);
 }
-
-
-
-
 
 function draw(){
  
