@@ -37,10 +37,16 @@ const height = 400;
 let x = width / 2;
 let y = height / 2;
 
+let x2 = 0;
+let y2 = 0;
+
 function handleMotionEvent(event) {
   x = event.accelerationIncludingGravity.x;
   y = event.accelerationIncludingGravity.y;
-  const z = event.accelerationIncludingGravity.z;
+
+  x2 = event.acceleration.x;
+  y2 = event.acceleration.y;
+  // const z = event.accelerationIncludingGravity.z;
 }
 
 function onClick(){
@@ -73,6 +79,7 @@ function draw() {
 
   textSize(24);
   text(`x: ${x}, y: ${y}`, width / 2, height / 2 + 30);
+  text(`x2: ${x2}, y2: ${y2}`, width / 2, height / 2 + 60);
 
 }
 
