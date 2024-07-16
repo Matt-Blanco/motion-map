@@ -85,7 +85,6 @@ function draw() {
 
   textSize(24);
   text(`x: ${x}, y: ${y}`, width / 2, height / 2 + 30);
-  text(`x2: ${x2}, y2: ${y2}`, width / 2, height / 2 + 60);
 
 }
 
