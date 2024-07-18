@@ -207,7 +207,7 @@
 
     // The setup function runs once when the program starts
     function setup() {
-      createCanvas(deviceWidth, deviceHeight); // Create a canvas for the compass
+      createCanvas(displayWidth, displayHeight); // Create a canvas for the compass
       
       // Attach an event listener to DeviceMotionEvent
       document.addEventListener('deviceorientation', handleDeviceOrientation);
