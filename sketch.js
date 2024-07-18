@@ -207,7 +207,7 @@
 
     // The setup function runs once when the program starts
     function setup() {
-      createCanvas(700, 500); // Create a canvas for the compass
+      createCanvas(deviceWidth, deviceHeight); // Create a canvas for the compass
       
       // Attach an event listener to DeviceMotionEvent
       document.addEventListener('deviceorientation', handleDeviceOrientation);
@@ -236,16 +236,19 @@
       
       // Convert the orientation to radians
       let radians = degreesToRadians(deviceOrientation);
-      
+      console.log(deviceOrientation);
       // Calculate the arrow's position based on the orientation
       let arrowX = 150 * cos(radians);
       let arrowY = 150 * sin(radians);
       
+      console.log(arrowX, arrowY, width, height)
       // Draw the arrow pointing towards the device orientation
       stroke(0, 255, 0); // Set the arrow color to green
       line(0, 0, arrowX, arrowY); // Draw the arrow line
       fill(0, 255, 0); // Fill the arrow tip with green
       triangle(arrowX, arrowY, -8, arrowY+5, -8, arrowY-5);
+
+      console.log(arrowX, arrowY, -8, arrowY+5, -8, arrowY-5)
       
       // Display the device orientation as text under the arrow
       fill(0); // Set text color to black
