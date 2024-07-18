@@ -190,12 +190,14 @@ function onClick() {
     DeviceMotionEvent.requestPermission()
       .then(permissionState => {
         if (permissionState === 'granted') {
-          window.addEventListener('devicemotion', handleMotionEvent);
+          // window.addEventListener('devicemotion', handleMotionEvent);
+          window.addEventListener('deviceorientation', handleDeviceOrientation);
         }
       })
       .catch(console.error);
   } else {
-    window.addEventListener('devicemotion', handleMotionEvent);
+    // window.addEventListener('devicemotion', handleMotionEvent);
+    window.addEventListener('deviceorientation', handleDeviceOrientation);
     // handle regular non iOS 13+ devices
   }
 
@@ -210,7 +212,7 @@ function setup() {
   createCanvas(displayWidth, displayHeight); // Create a canvas for the compass
 
   // Attach an event listener to DeviceMotionEvent
-  document.addEventListener('deviceorientation', handleDeviceOrientation);
+  // document.addEventListener('deviceorientation', handleDeviceOrientation);
 
   // Set the text alignment and size
   textAlign(CENTER, CENTER);
