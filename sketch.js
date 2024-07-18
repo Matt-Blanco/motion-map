@@ -235,11 +235,11 @@
       circle(0, 0, 200);
       
       // Convert the orientation to radians
-      let radians = radians(deviceOrientation);
+      let rads = radians(deviceOrientation);
       console.log(deviceOrientation);
       // Calculate the arrow's position based on the orientation
-      let arrowX = 150 * cos(radians);
-      let arrowY = 150 * sin(radians);
+      let arrowX = 150 * cos(rads);
+      let arrowY = 150 * sin(rads);
       
       console.log(arrowX, arrowY, width, height)
       // Draw the arrow pointing towards the device orientation
