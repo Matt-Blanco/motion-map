@@ -210,7 +210,7 @@
       createCanvas(700, 500); // Create a canvas for the compass
       
       // Attach an event listener to DeviceMotionEvent
-      attachEvent('deviceorientation', handleDeviceOrientation);
+      document.addEventListener('deviceorientation', handleDeviceOrientation);
       
       // Set the text alignment and size
       textAlign(CENTER, CENTER);
