@@ -23,7 +23,7 @@
 // // //   dthetaXdt= event.rotationRate.alpha * PI / 180;
 // // //   dthetaYdt= event.rotationRate.beta * PI / 180;
 // // //   dthetaZdt= event.rotationRate.gamma * PI / 180;
-  
+
 // // //   let ct = millis()/1000;
 // // //   dt= ct - t;
 // // //   t= ct;
@@ -59,23 +59,6 @@
 // //   // const z = event.accelerationIncludingGravity.z;
 // // }
 
-// // function onClick(){
-// //   if (typeof DeviceMotionEvent.requestPermission === 'function') {
-// //     DeviceMotionEvent.requestPermission()
-// //       .then(permissionState => {
-// //         if (permissionState === 'granted') {
-// //           window.addEventListener('devicemotion', handleMotionEvent);
-// //         }
-// //       })
-// //       .catch(console.error);
-// //   } else {
-// //     window.addEventListener('devicemotion', handleMotionEvent);
-// //     // handle regular non iOS 13+ devices
-// //   }
-
-// //   document.getElementById("motion-button").style.display = "none";
-// // }
-
 // // function setup() {
 // //   createCanvas(width, height);
 // //   ellipseMode(CENTER);
@@ -100,16 +83,16 @@
 // // // }
 
 // // // function draw(){
- 
+
 // // //   background(0);
-  
+
 // // //   directionalLight(255,255,255,-1,-1,-1);
 // // //   ambientLight(80);
 
 // // //   dtheta1dt = dthetaXdt;
 // // //   dtheta2dt = dthetaYdt * sin(thetaX) + dthetaZdt * cos(thetaX);
 // // //   dtheta3dt =- dthetaYdt * cos(thetaX) * cos(theta2) + dthetaZdt * sin(thetaX) * cos(theta2)
-  
+
 // // //   stroke(0);
 
 
@@ -168,7 +151,7 @@
 // // //     theta1 += dtheta1dt * dt;
 // // //     theta2 += dtheta2dt * dt;
 // // //     theta3 += dtheta3dt * dt;
-    
+
 // // //     thetaX += dthetaXdt * dt;
 // // //     thetaY += dthetaYdt * dt;
 // // //     thetaZ += dthetaZdt * dt;
@@ -202,55 +185,72 @@
 //   circle(x, y, diameter);
 // }
 
-    // Declare the global variable to store the device orientation
-    let deviceOrientation = 0;
+function onClick() {
+  if (typeof DeviceMotionEvent.requestPermission === 'function') {
+    DeviceMotionEvent.requestPermission()
+      .then(permissionState => {
+        if (permissionState === 'granted') {
+          window.addEventListener('devicemotion', handleMotionEvent);
+        }
+      })
+      .catch(console.error);
+  } else {
+    window.addEventListener('devicemotion', handleMotionEvent);
+    // handle regular non iOS 13+ devices
+  }
 
-    // The setup function runs once when the program starts
-    function setup() {
-      createCanvas(displayWidth, displayHeight); // Create a canvas for the compass
-      
-      // Attach an event listener to DeviceMotionEvent
-      document.addEventListener('deviceorientation', handleDeviceOrientation);
-      
-      // Set the text alignment and size
-      textAlign(CENTER, CENTER);
-      textSize(16);
-    }
+  document.getElementById("motion-button").style.display = "none";
+}
 
-    // This function will be called whenever the device orientation changes
-    function handleDeviceOrientation(event) {
-      // 'event.alpha' represents the degree of rotation around the Z-axis (vertical axis)
-      deviceOrientation = event.alpha;
-    }
+// Declare the global variable to store the device orientation
+let deviceOrientation = 0;
 
-    // The draw function continuously executes after setup()
-    function draw() {
-      background(255); // Set the canvas background to white
-      
-      translate(width / 2, height / 2); // Move the origin to the center of the canvas
-      
-      // Draw a circle to represent the compass
-      fill(127);
-      noStroke();
-      circle(0, 0, 200);
-      
-      // Convert the orientation to radians
-      let rads = radians(deviceOrientation);
-      console.log(deviceOrientation);
-      // Calculate the arrow's position based on the orientation
-      let arrowX = 150 * cos(rads);
-      let arrowY = 150 * sin(rads);
-      
-      console.log(arrowX, arrowY, width, height)
-      // Draw the arrow pointing towards the device orientation
-      stroke(0, 255, 0); // Set the arrow color to green
-      line(0, 0, arrowX, arrowY); // Draw the arrow line
-      fill(0, 255, 0); // Fill the arrow tip with green
-      triangle(arrowX, arrowY, -8, arrowY+5, -8, arrowY-5);
+// The setup function runs once when the program starts
+function setup() {
+  createCanvas(displayWidth, displayHeight); // Create a canvas for the compass
 
-      console.log(arrowX, arrowY, -8, arrowY+5, -8, arrowY-5)
-      
-      // Display the device orientation as text under the arrow
-      fill(0); // Set text color to black
-      text(nfc(deviceOrientation, 1), 0, 220); // Display the orientation with one decimal place
-    }
+  // Attach an event listener to DeviceMotionEvent
+  document.addEventListener('deviceorientation', handleDeviceOrientation);
+
+  // Set the text alignment and size
+  textAlign(CENTER, CENTER);
+  textSize(16);
+}
+
+// This function will be called whenever the device orientation changes
+function handleDeviceOrientation(event) {
+  // 'event.alpha' represents the degree of rotation around the Z-axis (vertical axis)
+  deviceOrientation = event.alpha;
+}
+
+// The draw function continuously executes after setup()
+function draw() {
+  background(255); // Set the canvas background to white
+
+  translate(width / 2, height / 2); // Move the origin to the center of the canvas
+
+  // Draw a circle to represent the compass
+  fill(127);
+  noStroke();
+  circle(0, 0, 200);
+
+  // Convert the orientation to radians
+  let rads = radians(deviceOrientation);
+  console.log(deviceOrientation);
+  // Calculate the arrow's position based on the orientation
+  let arrowX = 150 * cos(rads);
+  let arrowY = 150 * sin(rads);
+
+  console.log(arrowX, arrowY, width, height)
+  // Draw the arrow pointing towards the device orientation
+  stroke(0, 255, 0); // Set the arrow color to green
+  line(0, 0, arrowX, arrowY); // Draw the arrow line
+  fill(0, 255, 0); // Fill the arrow tip with green
+  triangle(arrowX, arrowY, -8, arrowY + 5, -8, arrowY - 5);
+
+  console.log(arrowX, arrowY, -8, arrowY + 5, -8, arrowY - 5)
+
+  // Display the device orientation as text under the arrow
+  fill(0); // Set text color to black
+  text(nfc(deviceOrientation, 1), 0, 220); // Display the orientation with one decimal place
+}
