@@ -185,6 +185,8 @@
 //   circle(x, y, diameter);
 // }
 
+document.getElementById('motion-button').onclick = onClick;
+
 function onClick() {
   if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
