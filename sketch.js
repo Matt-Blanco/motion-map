@@ -185,7 +185,6 @@
 //   circle(x, y, diameter);
 // }
 
-document.getElementById('motion-button').onclick = onClick;
 
 function onClick() {
   if (typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -208,6 +207,8 @@ function onClick() {
 
 // Declare the global variable to store the device orientation
 let deviceOrientation = 0;
+document.getElementById('motion-button').onclick = onClick;
+
 
 // The setup function runs once when the program starts
 function setup() {
