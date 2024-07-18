@@ -185,77 +185,182 @@
 //   circle(x, y, diameter);
 // }
 
+// function onClick() {
+//   if (typeof DeviceMotionEvent.requestPermission === 'function') {
+//     DeviceMotionEvent.requestPermission()
+//       .then(permissionState => {
+//         if (permissionState === 'granted') {
+//           // window.addEventListener('devicemotion', handleMotionEvent);
+//           window.addEventListener('deviceorientation', handleDeviceOrientation);
+//         }
+//       })
+//       .catch(console.error);
+//   } else {
+//     // window.addEventListener('devicemotion', handleMotionEvent);
+//     window.addEventListener('deviceorientation', handleDeviceOrientation);
+//     // handle regular non iOS 13+ devices
+//   }
 
-function onClick() {
-  if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    DeviceMotionEvent.requestPermission()
-      .then(permissionState => {
-        if (permissionState === 'granted') {
-          // window.addEventListener('devicemotion', handleMotionEvent);
-          window.addEventListener('deviceorientation', handleDeviceOrientation);
-        }
-      })
-      .catch(console.error);
-  } else {
-    // window.addEventListener('devicemotion', handleMotionEvent);
-    window.addEventListener('deviceorientation', handleDeviceOrientation);
-    // handle regular non iOS 13+ devices
-  }
+//   document.getElementById("motion-button").style.display = "none";
+// }
 
-  document.getElementById("motion-button").style.display = "none";
-}
+// // Declare the global variable to store the device orientation
+// let deviceOrientation = 0;
+// document.getElementById('motion-button').onclick = onClick;
 
-// Declare the global variable to store the device orientation
+
+// // The setup function runs once when the program starts
+// function setup() {
+//   createCanvas(displayWidth, displayHeight); // Create a canvas for the compass
+
+//   // Attach an event listener to DeviceMotionEvent
+//   // document.addEventListener('deviceorientation', handleDeviceOrientation);
+
+//   // Set the text alignment and size
+//   textAlign(CENTER, CENTER);
+//   textSize(16);
+// }
+
+// // This function will be called whenever the device orientation changes
+// function handleDeviceOrientation(event) {
+//   // 'event.alpha' represents the degree of rotation around the Z-axis (vertical axis)
+//   deviceOrientation = event.alpha;
+// }
+
+// // The draw function continuously executes after setup()
+// function draw() {
+//   background(255); // Set the canvas background to white
+
+//   translate(width / 2, height / 2); // Move the origin to the center of the canvas
+
+//   // Draw a circle to represent the compass
+//   fill(127);
+//   noStroke();
+//   circle(0, 0, 200);
+
+//   // Convert the orientation to radians
+//   let rads = radians(deviceOrientation);
+//   console.log(deviceOrientation);
+//   // Calculate the arrow's position based on the orientation
+//   let arrowX = 150 * cos(rads);
+//   let arrowY = 150 * sin(rads);
+
+//   console.log(arrowX, arrowY, width, height)
+//   // Draw the arrow pointing towards the device orientation
+//   stroke(0, 255, 0); // Set the arrow color to green
+//   line(0, 0, arrowX, arrowY); // Draw the arrow line
+//   fill(0, 255, 0); // Fill the arrow tip with green
+//   triangle(arrowX, arrowY, -8, arrowY + 5, -8, arrowY - 5);
+
+//   console.log(arrowX, arrowY, -8, arrowY + 5, -8, arrowY - 5)
+
+//   // Display the device orientation as text under the arrow
+//   fill(0); // Set text color to black
+//   text(nfc(deviceOrientation, 1), 0, 220); // Display the orientation with one decimal place
+// }
+
+// Set global variables for acceleration, circle position, and orientation
 let deviceOrientation = 0;
+let accelerationX = 0;
+let accelerationY = 0;
+let circleX = 0;
+let circleY = 0;
+let circleSpeed = 0; // Speed of the circle
+let maxSpeed = 10; // Maximum speed of the circle
+
+// We will use this variable to store the previous 
+// orientation value for calculating rotation
+let previousOrientation = 0;
+
 document.getElementById('motion-button').onclick = onClick;
 
+function onClick() { 
+    // Request permission for device motion access
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      DeviceMotionEvent.requestPermission()
+        .then(permissionState => { 
+          if (permissionState === 'granted') { 
+            window.addEventListener('devicemotion', handleMotionEvent); 
+            window.addEventListener('deviceorientation', handleDeviceOrientation);
+          } 
+        }) 
+        .catch(console.error); 
+    } else { 
+     // Non-iOS 13+ devices
+      window.addEventListener('devicemotion', handleMotionEvent); 
+      window.addEventListener('deviceorientation', handleDeviceOrientation); 
+    } 
+    document.getElementById("motion-button").style.display = "none"; 
+}  
 
-// The setup function runs once when the program starts
-function setup() {
-  createCanvas(displayWidth, displayHeight); // Create a canvas for the compass
+function setup() { 
+  createCanvas(displayWidth, displayHeight); 
+  textAlign(CENTER, CENTER); 
+  textSize(16);  
+}  
 
-  // Attach an event listener to DeviceMotionEvent
-  // document.addEventListener('deviceorientation', handleDeviceOrientation);
+function handleDeviceOrientation(event) { 
+  // Update the device orientation value
+  deviceOrientation = event.alpha; 
+} 
 
-  // Set the text alignment and size
-  textAlign(CENTER, CENTER);
-  textSize(16);
-}
+function handleMotionEvent(event) {  
+  // Update the acceleration values
+  accelerationX = event.accelerationIncludingGravity.x; 
+  accelerationY = event.accelerationIncludingGravity.y; 
+} 
 
-// This function will be called whenever the device orientation changes
-function handleDeviceOrientation(event) {
-  // 'event.alpha' represents the degree of rotation around the Z-axis (vertical axis)
-  deviceOrientation = event.alpha;
-}
-
-// The draw function continuously executes after setup()
-function draw() {
-  background(255); // Set the canvas background to white
-
-  translate(width / 2, height / 2); // Move the origin to the center of the canvas
-
-  // Draw a circle to represent the compass
-  fill(127);
+function draw() {  
+  background(255); 
+  translate(width / 2, height / 2);  
+  
+  // Draw the background for acceleration and orientation values
+  fill(200);
   noStroke();
-  circle(0, 0, 200);
+  rect(-width/2, -180, width, 100);
+  
+  // Convert orientation to radians
+  let rads = radians(deviceOrientation); 
 
-  // Convert the orientation to radians
-  let rads = radians(deviceOrientation);
-  console.log(deviceOrientation);
-  // Calculate the arrow's position based on the orientation
-  let arrowX = 150 * cos(rads);
-  let arrowY = 150 * sin(rads);
+  // Calculate change in orientation from previous frame
+  let deltaOrientation = deviceOrientation - previousOrientation;
+  previousOrientation = deviceOrientation;
 
-  console.log(arrowX, arrowY, width, height)
-  // Draw the arrow pointing towards the device orientation
-  stroke(0, 255, 0); // Set the arrow color to green
-  line(0, 0, arrowX, arrowY); // Draw the arrow line
-  fill(0, 255, 0); // Fill the arrow tip with green
-  triangle(arrowX, arrowY, -8, arrowY + 5, -8, arrowY - 5);
+  // Adjust the circle's speed based on device tilt (deltaOrientation)
+  circleSpeed = map(abs(deltaOrientation), 0, 30, 0, maxSpeed);
 
-  console.log(arrowX, arrowY, -8, arrowY + 5, -8, arrowY - 5)
+  // Limit the maximum speed of the circle
+  if (circleSpeed > maxSpeed) circleSpeed = maxSpeed;
 
-  // Display the device orientation as text under the arrow
-  fill(0); // Set text color to black
-  text(nfc(deviceOrientation, 1), 0, 220); // Display the orientation with one decimal place
+  // Update the position of the circle using acceleration and speed
+  circleX += accelerationX * circleSpeed;
+  circleY -= accelerationY * circleSpeed;
+  
+  // Constrain the circle inside the canvas
+  circleX = constrain(circleX, -width/2, width/2);
+  circleY = constrain(circleY, -height/2, height/2);
+  
+  // Draw the circle
+  fill(127);  
+  noStroke();  
+  circle(circleX, circleY, 20); 
+
+  // Draw the arrow to indicate orientation
+  stroke(0, 255, 0);   
+  line(0, 0, 150 * cos(rads), 150 * sin(rads));
+  fill(0, 255, 0);  
+  triangle(
+    150 * cos(rads),  
+    150 * sin(rads),
+    -8, 
+   150 * sin(rads) + 5,  
+    -8, 
+    150 * sin(rads) - 5
+  );
+  
+  // Display device orientation and acceleration values
+  fill(0);
+  text(nfc(deviceOrientation, 1), 0, -150);  
+  text("Acceleration X: " + nfc(accelerationX, 2), 0, -130); 
+  text("Acceleration Y: " + nfc(accelerationY, 2), 0, -110); 
 }
