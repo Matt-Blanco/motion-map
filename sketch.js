@@ -2,8 +2,8 @@
 let deviceOrientation = 0;
 let accelerationX = 0;
 let accelerationY = 0;
-let circleX = 0;
-let circleY = 0;
+let circleX = 100;
+let circleY = 100;
 let circleSpeed = 0; // Speed of the circle
 let maxSpeed = 10; // Maximum speed of the circle
 
