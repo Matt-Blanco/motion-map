@@ -1,11 +1,9 @@
 // Set global variables for acceleration, circle position, and orientation
 let deviceOrientation = 0;
-let accelerationX = 0;
-let accelerationY = 0;
-let circleX = 0;
-let circleY = 0;
-let circleSpeed = 0.2; // Speed of the circle
-let maxSpeed = 10; // Maximum speed of the circle
+let pX = 0;
+let pY = 0;
+let speed = 0.2; // Speed of the circle
+let points = []
 
 // We will use this variable to store the previous 
 // orientation value for calculating rotation
@@ -52,6 +50,17 @@ function handleMotionEvent(event) {
 
 function draw() {  
   background(255); 
+
+  stroke(0);
+  strokeWeight(1);
+  beginShape(POINTS);
+  for(let y = 0; y <= displayHeight; y+= 20) {
+    for(let x = 0; x <= displayWidth; x+= 20) {
+      vertex(x, y);
+    }
+  }
+  endShape();
+
   translate(width / 2, height / 2);  
   
   // Convert orientation to radians
@@ -61,48 +70,33 @@ function draw() {
   let deltaOrientation = deviceOrientation - previousOrientation;
   previousOrientation = deviceOrientation;
 
-  // Adjust the circle's speed based on device tilt (deltaOrientation)
-  // circleSpeed = map(abs(deltaOrientation), 0, 6.3, 0, maxSpeed);
-
-  // // Limit the maximum speed of the circle
-  // if (circleSpeed > maxSpeed) circleSpeed = maxSpeed;
-
-  // Update the position of the circle using acceleration and speed
-  // circleX += accelerationX * circleSpeed;
-  // circleY -= accelerationY * circleSpeed;
-
-  circleX += circleSpeed * Math.cos(rads);
-  circleY += circleSpeed * Math.sin(rads);
+  pX += speed * Math.cos(rads);
+  pY += speed * Math.sin(rads);
   
   // Constrain the circle inside the canvas
-  circleX = constrain(circleX, -width / 2, width);
-  circleY = constrain(circleY, -height / 2, height);
+  pX = constrain(pX, -width / 2, width);
+  pY = constrain(pY, -height / 2, height);
   
   // Draw the circle
-  fill(127);  
-  noStroke();  
-  circle(circleX, circleY, 20); 
+  noFill();
+  stroke(242, 121, 60);
+  strokeWeight(3);
+  beginShape();
+  for(let x = 0; x < points.length; x++) {
+    vertex(points[x][0], points[x][1]);
+  } 
+  vertex(pX, pY);
+  endShape(); 
 
-  // Draw the arrow to indicate orientation
-  stroke(0, 255, 0);   
-  line(0, 0, 150 * cos(rads), 150 * sin(rads));
-  fill(0, 255, 0);  
-  triangle(
-    150 * cos(rads),  
-    150 * sin(rads),
-    -8, 
-   150 * sin(rads) + 5,  
-    -8, 
-    150 * sin(rads) - 5
-  );
+  points.push([pX, pY]);
   
   // Display device orientation and acceleration values
   fill(0);
-  text(`Degrees: ${nfc(deviceOrientation, 1)}`, 0, -150); 
-  text(`Radians: ${nfc(rads, 1)}`, 0, -180); 
-  text(`Speed: ${nfc(circleSpeed, 1)}`, 0, -200);  
-  text("Speed X: " + circleSpeed * Math.cos(rads), 0, -130); 
-  text("Speed Y: " + circleSpeed * Math.sin(rads), 0, -110); 
+  text(`Device Orientation: ${nfc(deviceOrientation, 1)}`, 0, -150); 
+  // text(`Radians: ${nfc(rads, 1)}`, 0, -180); 
+  // text(`Speed: ${nfc(circleSpeed, 1)}`, 0, -200);  
+  // text("Speed X: " + circleSpeed * Math.cos(rads), 0, -130); 
+  // text("Speed Y: " + circleSpeed * Math.sin(rads), 0, -110); 
   // text("Acceleration X: " + nfc(accelerationX, 2), 0, -130); 
   // text("Acceleration Y: " + nfc(accelerationY, 2), 0, -110); 
 }
