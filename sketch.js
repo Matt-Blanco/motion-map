@@ -62,7 +62,7 @@ function draw() {
   previousOrientation = deviceOrientation;
 
   // Adjust the circle's speed based on device tilt (deltaOrientation)
-  circleSpeed = map(abs(deltaOrientation), 0, 30, 0, maxSpeed);
+  circleSpeed = map(abs(deltaOrientation), 0, 6.3, 0, maxSpeed);
   console.log(circleSpeed)
 
   // Limit the maximum speed of the circle
