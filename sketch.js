@@ -46,8 +46,8 @@ function handleDeviceOrientation(event) {
 
 function handleMotionEvent(event) {  
   // Update the acceleration values
-  accelerationX = event.accelerationIncludingGravity.x; 
-  accelerationY = event.accelerationIncludingGravity.y; 
+  accelerationX = event.acceleration.x; 
+  accelerationY = event.acceleration.y; 
 } 
 
 function draw() {  
@@ -62,7 +62,8 @@ function draw() {
   previousOrientation = deviceOrientation;
 
   // Adjust the circle's speed based on device tilt (deltaOrientation)
-  circleSpeed = 10;//map(abs(deltaOrientation), 0, 30, 0, maxSpeed);
+  circleSpeed = map(abs(deltaOrientation), 0, 20, 0, maxSpeed);
+  console.log(circleSpeed)
 
   // Limit the maximum speed of the circle
   if (circleSpeed > maxSpeed) circleSpeed = maxSpeed;
