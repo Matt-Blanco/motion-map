@@ -2,8 +2,8 @@
 let deviceOrientation = 0;
 let accelerationX = 0;
 let accelerationY = 0;
-let circleX = 100;
-let circleY = 100;
+let circleX = 0;
+let circleY = 0;
 let circleSpeed = 0; // Speed of the circle
 let maxSpeed = 10; // Maximum speed of the circle
 
@@ -54,11 +54,6 @@ function draw() {
   background(255); 
   translate(width / 2, height / 2);  
   
-  // Draw the background for acceleration and orientation values
-  fill(200);
-  noStroke();
-  rect(-width/2, -180, width, 100);
-  
   // Convert orientation to radians
   let rads = radians(deviceOrientation); 
 
@@ -67,7 +62,7 @@ function draw() {
   previousOrientation = deviceOrientation;
 
   // Adjust the circle's speed based on device tilt (deltaOrientation)
-  circleSpeed = map(abs(deltaOrientation), 0, 30, 0, maxSpeed);
+  circleSpeed = 10;//map(abs(deltaOrientation), 0, 30, 0, maxSpeed);
 
   // Limit the maximum speed of the circle
   if (circleSpeed > maxSpeed) circleSpeed = maxSpeed;
