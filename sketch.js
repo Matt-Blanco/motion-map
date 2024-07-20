@@ -97,7 +97,7 @@ function draw() {
   fill(0);
   text(`Degrees: ${nfc(deviceOrientation, 1)}`, 0, -150); 
   text(`Radians: ${nfc(rads, 1)}`, 0, -180); 
-  text(`Speed: ${circleSpeed}`, 0, -200);  
+  text(`Speed: ${nfc(circleSpeed, 1)}`, 0, -200);  
   text("Acceleration X: " + nfc(accelerationX, 2), 0, -130); 
   text("Acceleration Y: " + nfc(accelerationY, 2), 0, -110); 
 }
