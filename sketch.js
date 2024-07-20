@@ -4,7 +4,7 @@ let accelerationX = 0;
 let accelerationY = 0;
 let circleX = 0;
 let circleY = 0;
-let circleSpeed = 0; // Speed of the circle
+let circleSpeed = 0.2; // Speed of the circle
 let maxSpeed = 10; // Maximum speed of the circle
 
 // We will use this variable to store the previous 
@@ -62,10 +62,10 @@ function draw() {
   previousOrientation = deviceOrientation;
 
   // Adjust the circle's speed based on device tilt (deltaOrientation)
-  circleSpeed = map(abs(deltaOrientation), 0, 6.3, 0, maxSpeed);
+  // circleSpeed = map(abs(deltaOrientation), 0, 6.3, 0, maxSpeed);
 
-  // Limit the maximum speed of the circle
-  if (circleSpeed > maxSpeed) circleSpeed = maxSpeed;
+  // // Limit the maximum speed of the circle
+  // if (circleSpeed > maxSpeed) circleSpeed = maxSpeed;
 
   // Update the position of the circle using acceleration and speed
   // circleX += accelerationX * circleSpeed;
