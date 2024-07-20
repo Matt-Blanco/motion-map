@@ -68,8 +68,11 @@ function draw() {
   if (circleSpeed > maxSpeed) circleSpeed = maxSpeed;
 
   // Update the position of the circle using acceleration and speed
-  circleX += accelerationX * circleSpeed;
-  circleY -= accelerationY * circleSpeed;
+  // circleX += accelerationX * circleSpeed;
+  // circleY -= accelerationY * circleSpeed;
+
+  circleX += circleSpeed * Math.cos(rads);
+  circleY += circleSpeed * Math.sin(rads);
   
   // Constrain the circle inside the canvas
   circleX = constrain(circleX, -width / 2, width);
