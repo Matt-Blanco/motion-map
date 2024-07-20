@@ -72,8 +72,8 @@ function draw() {
   circleY -= accelerationY * circleSpeed;
   
   // Constrain the circle inside the canvas
-  circleX = constrain(circleX, 0, width);
-  circleY = constrain(circleY, 0, height);
+  circleX = constrain(circleX, -width / 2, width);
+  circleY = constrain(circleY, -height / 2, height);
   
   // Draw the circle
   fill(127);  
