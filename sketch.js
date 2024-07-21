@@ -64,8 +64,8 @@ function draw() {
   stroke(0);
   strokeWeight(1);
   beginShape(POINTS);
-  for(let y = 0; y <= displayHeight; y+= 20) {
-    for(let x = 0; x <= displayWidth; x+= 20) {
+  for(let y = -(height / 2); y <= displayHeight; y+= 20) {
+    for(let x = -(width / 2); x <= displayWidth; x+= 20) {
       vertex(x, y);
     }
   }
