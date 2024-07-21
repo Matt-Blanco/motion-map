@@ -4,6 +4,9 @@ let pX = 0;
 let pY = 0;
 let speed = 0.2; // Speed of the circle
 let points = []
+let yOrientation = 0;
+let threshhold = 300;
+let scaleFactor = 1;
 
 // We will use this variable to store the previous 
 // orientation value for calculating rotation
@@ -51,6 +54,13 @@ function handleMotionEvent(event) {
 function draw() {  
   background(255); 
 
+  let deltaToEdge = min(pX - (width / 2), pY - (height / 2), width - pX, height - pY);
+
+  if (deltaToEdge <= threahhold) {
+    
+    
+  }
+
   stroke(0);
   strokeWeight(1);
   beginShape(POINTS);
@@ -91,8 +101,8 @@ function draw() {
   points.push([pX, pY]);
   
   // Display device orientation and acceleration values
-  fill(0);
-  text(`Device Orientation: ${nfc(deviceOrientation, 1)}`, 0, -150); 
+  // fill(0);
+  // text(`Device Orientation: ${nfc(deviceOrientation, 1)}`, 0, -150); 
   // text(`Radians: ${nfc(rads, 1)}`, 0, -180); 
   // text(`Speed: ${nfc(circleSpeed, 1)}`, 0, -200);  
   // text("Speed X: " + circleSpeed * Math.cos(rads), 0, -130); 
