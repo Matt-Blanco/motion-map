@@ -56,7 +56,7 @@ function draw() {
 
   let deltaToEdge = min(pX - (width / 2), pY - (height / 2), width - pX, height - pY);
 
-  if (deltaToEdge <= threahhold) {
+  if (deltaToEdge <= threshhold) {
     
     
   }
