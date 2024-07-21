@@ -34,7 +34,7 @@ function onClick() {
 }  
 
 function setup() { 
-  createCanvas(displayWidth, displayHeight); 
+  createCanvas(displayWidth, displayHeight, WebGL); 
   ellipseMode(CENTER);
   textAlign(CENTER, CENTER); 
   textSize(16);  
@@ -71,7 +71,7 @@ function draw() {
   }
   endShape();
 
-  translate(width / 2, height / 2);  
+  // translate(width / 2, height / 2);  
 
   fill(0);
   text(`Scale: ${scaleFactor}`, 0, -150); 
