@@ -6,7 +6,7 @@ let speed = 0.2; // Speed of the circle
 let points = []
 let yOrientation = 0;
 let threshhold = 300;
-let scaleFactor = 1;
+let scaleFactor = 4;
 
 // We will use this variable to store the previous 
 // orientation value for calculating rotation
@@ -53,6 +53,9 @@ function handleMotionEvent(event) {
 
 function draw() {  
   background(255); 
+
+  scale(scaleFactor)
+  translate(width / scaleFactor, height / scaleFactor);
 
   let deltaToEdge = min(pX, pY, width - pX, height - pY);
 
