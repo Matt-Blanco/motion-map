@@ -43,7 +43,7 @@ function setup() {
 function handleDeviceOrientation(event) { 
   // Update the device orientation value
   deviceOrientation = -event.alpha - 90; 
-  yOrientation = event.gamma;
+  yOrientation = radians(event.gamma);
 } 
 
 function handleMotionEvent(event) {  
