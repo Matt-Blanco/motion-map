@@ -54,9 +54,6 @@ function handleMotionEvent(event) {
 function draw() {  
   background(255); 
 
-  fill(0);
-  text(`Scale: ${scaleFactor}`, 0, -150); 
-
   let deltaToEdge = min(pX, pY, width - pX, height - pY);
 
   if (deltaToEdge <= threshhold) {
@@ -75,6 +72,10 @@ function draw() {
   endShape();
 
   translate(width / 2, height / 2);  
+
+  fill(0);
+  text(`Scale: ${scaleFactor}`, 0, -150); 
+
   
   // Convert orientation to radians
   let rads = radians(deviceOrientation); 
