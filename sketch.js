@@ -1,5 +1,5 @@
 // Set global variables for acceleration, circle position, and orientation
-let deviceOrientation = 90;
+let deviceOrientation = 0;
 let pX = 0;
 let pY = 0;
 let speed = 0.2; // Speed of the circle
@@ -42,7 +42,7 @@ function setup() {
 
 function handleDeviceOrientation(event) { 
   // Update the device orientation value
-  deviceOrientation += event.alpha; 
+  deviceOrientation = 90 + event.alpha; 
 } 
 
 function handleMotionEvent(event) {  
