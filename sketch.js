@@ -34,7 +34,7 @@ function onClick() {
 }  
 
 function setup() { 
-  createCanvas(displayWidth, displayHeight, WebGL); 
+  createCanvas(displayWidth, displayHeight, WEBGL); 
   ellipseMode(CENTER);
   textAlign(CENTER, CENTER); 
   textSize(16);  
