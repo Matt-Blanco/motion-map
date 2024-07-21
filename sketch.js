@@ -61,7 +61,7 @@ function draw() {
 
   if (deltaToEdge <= threshhold) {
     scaleFactor = map(scaleFactor, 0, 1, 1, 0.25);
-    scale(scaleFactor);
+    // scale(scaleFactor);
   }
 
   stroke(0);
