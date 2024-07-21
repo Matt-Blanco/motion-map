@@ -43,6 +43,7 @@ function setup() {
 function handleDeviceOrientation(event) { 
   // Update the device orientation value
   deviceOrientation = -event.alpha - 90; 
+  yOrientation = event.gamma;
 } 
 
 function handleMotionEvent(event) {  
@@ -106,6 +107,8 @@ function draw() {
   endShape(); 
 
   points.push([pX, pY]);
+
+  rotateY(yOrientation);
   
   // Display device orientation and acceleration values
   // fill(0);
