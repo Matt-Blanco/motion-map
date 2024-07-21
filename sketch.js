@@ -2,7 +2,7 @@
 let deviceOrientation = -90;
 let pX = 0;
 let pY = 0;
-let speed = 0.2; // Speed of the circle
+let speed = 0.1; // Speed of the circle
 let points = []
 let yOrientation = 0;
 let threshhold = 300;
