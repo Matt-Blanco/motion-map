@@ -55,7 +55,7 @@ function draw() {
   background(255); 
 
   fill(0);
-  text(`Scale: ${nfc(scaleFactor, 3)}`, 0, -150); 
+  text(`Scale: ${scaleFactor}`, 0, -150); 
 
   let deltaToEdge = min(pX, pY, width - pX, height - pY);
 
