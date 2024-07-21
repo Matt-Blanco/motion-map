@@ -57,7 +57,7 @@ function draw() {
   fill(0);
   text(`Scale: ${nfc(scaleFactor, 3)}`, 0, -150); 
 
-  let deltaToEdge = min(pX - (width / 2), pY - (height / 2), width - pX, height - pY);
+  let deltaToEdge = min(pX, pY, width - pX, height - pY);
 
   if (deltaToEdge <= threshhold) {
     scaleFactor = map(scaleFactor, 0, 1, 1, 0.25);
