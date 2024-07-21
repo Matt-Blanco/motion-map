@@ -54,13 +54,13 @@ function handleMotionEvent(event) {
 function draw() {  
   background(255); 
 
-  scale(scaleFactor)
+  // scale(scaleFactor)
   // translate(width / scaleFactor, height / scaleFactor);
 
   let deltaToEdge = min(pX, pY, width - pX, height - pY);
 
   if (deltaToEdge <= threshhold) {
-    scaleFactor = map(scaleFactor, 0, 1, 1, 0.25);
+    // scaleFactor = map(scaleFactor, 0, 1, 1, 0.25);
     // scale(scaleFactor);
   }
 
