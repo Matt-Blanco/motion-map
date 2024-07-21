@@ -55,7 +55,7 @@ function draw() {
   background(255); 
 
   scale(scaleFactor)
-  translate(width / scaleFactor, height / scaleFactor);
+  // translate(width / scaleFactor, height / scaleFactor);
 
   let deltaToEdge = min(pX, pY, width - pX, height - pY);
 
